@@ -21,22 +21,40 @@ export default function Form() {
       randomImage: url,
     }));
   }
-
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setImage((prevmeme) => ({
+      ...prevmeme,
+      [name]: value,
+    }));
+  }
   return (
     <main>
       <form action="">
         <div className="input1">
           <label htmlFor=""> Top text</label>
-          <input type=" " />
+          <input
+            type="text "
+            name="topText"
+            value={memeImage.topText}
+            onChange={handleChange}
+          />
         </div>
         <div className="input2">
           <label htmlFor="">Bottom text</label>
-          <input type="text" />
+          <input
+            type="text"
+            name="bottomText"
+            value={memeImage.bottomText}
+            onChange={handleChange}
+          />
         </div>
       </form>
       <button onClick={getMeme}>Get a new meme image 🖼</button>
       <div className="meme-img">
-        <img src={memeImage.randomImage} alt="" />
+        <img src={memeImage.randomImage} className="meme--image" />
+        <h2 className="meme--text top">{memeImage.topText}</h2>
+        <h2 className="meme--text bottom">{memeImage.bottomText}</h2>
       </div>
     </main>
   );
